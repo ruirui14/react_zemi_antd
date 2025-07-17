@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Select, Table, Button, Modal, Layout, theme } from "antd";
+import { Select, Table, Button, Modal, Layout, theme, Input } from "antd";
 
 const { Header } = Layout;
 
@@ -157,7 +157,7 @@ export default function StockTable() {
           paddingRight: 40,
         }}
       >
-        <div style={{flex: 1}}>
+        <div style={{ flex: 1 }}>
           <Select
             showSearch
             placeholder="カテゴリー絞り込み"
@@ -178,7 +178,7 @@ export default function StockTable() {
               },
             ]}
           />
-        </div > 
+        </div>
         <Button
           color="cyan"
           variant="solid"
@@ -191,12 +191,24 @@ export default function StockTable() {
       </div>
 
       <Modal
-        title="Title"
+        title="新規登録"
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
-      />
+        width="40%"
+      >
+        <div style={{ height: "35vh" }}>
+          <div style={{marginTop: "30px", display:"flex", flexDirection: "column", justifyContent: "center", gap: "25px"}}>
+            <Input placeholder="商品ID" />
+            <Input placeholder="商品名" />
+            <Input placeholder="カテゴリー" />
+            <Input placeholder="在庫数" />
+            <Input placeholder="単価" />
+          </div>
+        </div>
+      </Modal>
+
       <div style={{ padding: "30px 40px" }}>
         <Table columns={columns} dataSource={data} />
       </div>
