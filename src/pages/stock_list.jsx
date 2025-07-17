@@ -1,0 +1,143 @@
+import React from "react";
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
+import { Layout, Menu, Card, Col, Row, theme } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Line } from "@ant-design/plots";
+
+const { Sider, Content, Header } = Layout;
+
+const items = [
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  UserOutlined,
+].map((icon, index) => ({
+  key: String(index + 1),
+  icon: React.createElement(icon),
+  label: `e-mail ${index + 1}`,
+}));
+
+export default function StockList() {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate("/stock_table"); //在庫一覧ページへ
+  };
+
+  const data = [
+    { month: "4月", 在庫数: 8 },
+    { month: "5月", 在庫数: 9 },
+    { month: "6月", 在庫数: 9.1 },
+    { month: "7月", 在庫数: 9.8 },
+    { month: "8月", 在庫数: 9.3 },
+    { month: "9月", 在庫数: 7.2 },
+    { month: "10月", 在庫数: 4.5 },
+  ];
+
+  const config = {
+    data,
+    xField: "month",
+    yField: "在庫数",
+    autoFit: true,      //親要素にフィット
+    height: 200,        //グラフの高さを指定（Cardの高さに収める）
+    shapeField: "smooth",
+    scale: {
+      y: {
+        domainMin: 0,
+        domainMax: 10,
+      },
+    },
+    interaction: {
+      tooltip: {
+        marker: false,
+      },
+    },
+    style: {
+      lineWidth: 2,
+    },
+  };
+
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
+  return (
+    <>
+      <Content>
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+            borderBottom: "1px solid #f0f0f0",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+          }}
+        >
+          <div style={{ fontWeight: "bold", marginLeft: "18%" }}>AntDesign</div>
+        </Header>
+        <Sider
+          width={250}
+          style={{
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+            top: 0,
+            bottom: 0,
+          }}
+        >
+          <div className="demo-logo-vertical" />
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            items={items}
+          />
+        </Sider>
+
+        <Row
+          gutter={[20, 30]}
+          style={{
+            marginLeft: 260,
+            marginRight: 10,
+            marginTop: 40,
+          }}
+        >
+          <Col span={8}>
+            <Card
+              onClick={handleCardClick}
+              title="在庫一覧"
+              variant="borderless"
+              style={{ height: 300 }}
+            >
+              在庫一覧
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title="在庫登録" variant="borderless" style={{ height: 300 }}>
+              在庫登録
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title="在庫一覧" variant="borderless" style={{ height: 300 }}>
+              在庫一覧
+            </Card>
+          </Col>
+          <Col span={16}>
+            <Card title="在庫推移" variant="borderless" style={{ height: 300 }}>
+              ポテト在庫推移
+              <Line {...config} />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title="在庫一覧" variant="borderless" style={{ height: 300 }}>
+              在庫一覧
+            </Card>
+          </Col>
+        </Row>
+      </Content>
+    </>
+  );
+}
