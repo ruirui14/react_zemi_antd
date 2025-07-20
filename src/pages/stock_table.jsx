@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Select, Table, Button, Modal, Layout, theme, Input, Tag } from "antd";
-
+import { LeftOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 const { Header } = Layout;
 
 // ランダムID生成関数
@@ -88,6 +89,13 @@ export default function StockTable() {
   const [selectedCategory, setSelectedCategory] = useState("すべて");
   const [editMode, setEditMode] = useState(false);
   const [editingKey, setEditingKey] = useState(null);
+  
+  const navigate = useNavigate();
+
+  const handleback = () => {
+    navigate("/");
+  }
+
 
   const showModal = () => {
     setOpen(true);
@@ -247,6 +255,11 @@ export default function StockTable() {
         }}
       >
         <div style={{ fontWeight: "bold", padding: "0 20px" }}>
+          <Button
+            onClick={handleback}
+            icon={<LeftOutlined />}
+            style={{ marginRight: "15px" }}
+          />
           AntDesign（在庫一覧）
         </div>
       </Header>
