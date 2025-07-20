@@ -3,6 +3,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  TableOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Card, Col, Row, theme } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +12,28 @@ import { Line } from "@ant-design/plots";
 const { Sider, Content, Header } = Layout;
 
 const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `e-mail ${index + 1}`,
-}));
+  {
+    key: "1",
+    icon: <TableOutlined />,
+    label: "在庫一覧",
+  },
+  {
+    key: "2",
+    icon: <VideoCameraOutlined />,
+    label: "監視カメラ",
+  },
+  {
+    key: "3",
+    icon: <UploadOutlined />,
+    label: "アップロード",
+  },
+  {
+    key: "4",
+    icon: <UserOutlined />,
+    label: "アカウント設定",
+  },
+];
+  
 
 export default function StockList() {
   const navigate = useNavigate();
