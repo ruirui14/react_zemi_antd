@@ -4,6 +4,10 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   TableOutlined,
+  DatabaseOutlined,
+  FileAddOutlined,
+  HistoryOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Card, Col, Row, theme } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +37,6 @@ const items = [
     label: "アカウント設定",
   },
 ];
-  
 
 export default function StockList() {
   const navigate = useNavigate();
@@ -56,8 +59,8 @@ export default function StockList() {
     data,
     xField: "month",
     yField: "在庫数",
-    autoFit: true,      //親要素にフィット
-    height: 200,        //グラフの高さを指定（Cardの高さに収める）
+    autoFit: true, //親要素にフィット
+    height: 200, //グラフの高さを指定（Cardの高さに収める）
     shapeField: "smooth",
     scale: {
       y: {
@@ -126,28 +129,106 @@ export default function StockList() {
               variant="borderless"
               style={{ height: 300 }}
             >
-              在庫一覧
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  marginTop: "30px",
+                  gap: "8px",
+                }}
+              >
+                <DatabaseOutlined
+                  style={{ fontSize: 80, marginBottom: 16, color: "#8c8c8c" }}
+                />
+                <p style={{ fontSize: 16, margin: 0 }}>
+                  商品の在庫状況をチェック
+                </p>
+              </div>
             </Card>
           </Col>
           <Col span={8}>
             <Card title="在庫登録" variant="borderless" style={{ height: 300 }}>
-              在庫登録
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  marginTop: "30px",
+                  gap: "8px",
+                }}
+              >
+                <FileAddOutlined
+                  style={{ fontSize: 80, marginBottom: 16, color: "#8c8c8c" }}
+                />
+                <p style={{ fontSize: 16, margin: 0 }}>
+                  新しい商品の在庫情報を入力・登録します
+                </p>
+              </div>
             </Card>
           </Col>
           <Col span={8}>
-            <Card title="在庫一覧" variant="borderless" style={{ height: 300 }}>
-              在庫一覧
+            <Card
+              title="在庫変更履歴"
+              variant="borderless"
+              style={{ height: 300 }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  marginTop: "30px",
+                  gap: "8px",
+                }}
+              >
+                <HistoryOutlined
+                  style={{ fontSize: 80, marginBottom: 16, color: "#8c8c8c" }}
+                />
+                <p style={{ fontSize: 16, margin: 0 }}>
+                  商品の在庫数やステータス変更の履歴を確認できます
+                </p>
+              </div>
             </Card>
           </Col>
           <Col span={16}>
             <Card title="在庫推移" variant="borderless" style={{ height: 300 }}>
-              ポテト在庫推移
+              ”商品名”在庫推移
               <Line {...config} />
             </Card>
           </Col>
           <Col span={8}>
-            <Card title="在庫一覧" variant="borderless" style={{ height: 300 }}>
-              在庫一覧
+            <Card
+              title="アカウント設定"
+              variant="borderless"
+              style={{ height: 300 }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  marginTop: "30px",
+                  gap: "8px",
+                }}
+              >
+                <SettingOutlined
+                  style={{ fontSize: 80, marginBottom: 16, color: "#8c8c8c" }}
+                />
+                <p style={{ fontSize: 16, margin: 0 }}>アカウント設定</p>
+              </div>
             </Card>
           </Col>
         </Row>
